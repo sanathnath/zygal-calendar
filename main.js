@@ -3,11 +3,16 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 const dates = [];
 dates.length = 35;
 dates.fill("");
-let green_div = '';
+const years = [];
 
+let green_div = '';
 const calendar = document.querySelector(".calendar");
 const month_selector = document.getElementById("month-selector");
 const year_selector = document.getElementById("year-selector");
+
+let dt = new Date();
+let m = dt.getMonth();
+let y = dt.getFullYear();
 
 for(let i=0 ; i<months.length ; i++){
     const element = months[i];
@@ -25,9 +30,12 @@ for (let i = 0; i < days.length; i++) {
     calendar.appendChild(div);
 }
 
-let dt = new Date();
-let m = dt.getMonth();
-let y = dt.getFullYear();
+for(let i=y ; i>=1900 ; i--){
+    let option = document.createElement("option");
+    option.innerText = i;
+    option.value = i;
+    year_selector.appendChild(option);
+}
 
 createDatesArray();
 
@@ -66,10 +74,32 @@ function displayDates(arr){
 }
 
 function changeMonth(event){
-    m = event.target.value;
-    console.log(m);
-    let daysInMonth = new Date(y, months.indexOf(m)+1, 0).getDate();  //for finding how many days in a month
-    let firstDay = new Date(y, months.indexOf(m), 1).getDay();  //finding first day in a month
+    m = Number(months.indexOf(event.target.value));
+    let daysInMonth = new Date(y, m+1, 0).getDate();  //for finding how many days in a month
+    let firstDay = new Date(y, m, 1).getDay();  //finding first day in a month
+    // console.log(firstDay );
+    dates.fill("");
+    let i=firstDay, j=1;
+    while(j<=daysInMonth){
+        dates[i] = j;
+        j++;
+        i++;
+    }
+
+    let elements = document.querySelectorAll(".date-boxes");
+    
+    for(let i=0 ; i<dates.length ; i++){
+        calendar.removeChild(elements[i]);
+    }
+
+    displayDates(dates);
+}
+
+function changeYear(event){
+    y = Number(event.target.value);
+    console.log(y);
+    let daysInMonth = new Date(y, m+1, 0).getDate();  //for finding how many days in a month
+    let firstDay = new Date(y, m, 1).getDay();  //finding first day in a month
     // console.log(firstDay );
     dates.fill("");
     let i=firstDay, j=1;
