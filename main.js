@@ -3,6 +3,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 const dates = [];
 dates.length = 35;
 dates.fill("");
+let green_div = '';
 
 const calendar = document.querySelector(".calendar");
 const month_selector = document.getElementById("month-selector");
@@ -52,6 +53,14 @@ function displayDates(arr){
         let div = document.createElement("div");
         div.classList.add("date-boxes");
         div.innerText = element;
+        // console.log(element+" "+d);
+        if(element != ""){
+            div.setAttribute('id',element);
+        }
+        if(element == d && m == dt.getMonth() && y == dt.getFullYear()){
+            div.style.backgroundColor = 'green';
+            green_div = div;
+        }
         calendar.appendChild(div);
     }
 }
@@ -77,4 +86,15 @@ function changeMonth(event){
     }
 
     displayDates(dates);
+}
+
+function changeColor(event){
+    event.preventDefault();
+    let val = event.target.input.value;
+    let div = document.getElementById(val);
+    console.log(val);
+    green_div.style.backgroundColor = 'white';
+    div.style.backgroundColor = 'green';
+    green_div = div;
+
 }
