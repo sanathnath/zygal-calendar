@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    background-color: aqua;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.main{
+    width: 80%;
+}
+.select{
+    padding: .5rem 2rem;
+}
+.calendar{
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    margin-top: 2rem;
+}
+.boxes{
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+.date-boxes{
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+}
+.footer{
+    margin-top: 1rem;
+}
+.date-input{
+    padding: 0.5rem 1rem;
+}
+.submit-btn{
+    padding: 0.5rem 1rem;
+    background-color: rgb(56, 56, 218);
+    color: white;
+}
